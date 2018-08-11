@@ -1,0 +1,55 @@
+{
+  "name": "portal-rest-api",
+  "version": "0.1.0",
+  "description": "REST API that serves as the backend for the Partner Portal.",
+  "keywords": [
+    "serverless",
+    "aws-lambda",
+    "typescript",
+    "nodejs",
+    "rest-api",
+    "moneyworkz",
+    "partner-portal"
+  ],
+  "author": "hello@moneyworkz.com",
+  "license": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moneyworkz/partner-portal-rest-api.git"
+  },
+  "bugs": {
+    "url": "https://trello.com/moneyworkz"
+  },
+  "homepage": "https://moneyworkz.com/partner",
+  "private": true,
+  "main": "handler.js",
+  "scripts": {
+    "sls": "serverless",
+    "clean": "npm cache clean --force",
+    "build": "npm run clean && npm install",
+    "start": "npm run build && npm run start:dev",
+    "start:dev": "sls offline start -s dev",
+    "deploy:alpha": "npm run build && sls deploy -s alpha -r ap-southeast-2"
+  },
+  "dependencies": {
+    "@types/aws-sdk": "2.7.0",
+    "aws-sdk": "2.209.0",
+    "eml-format": "0.5.0",
+    "hogan.js": "3.0.2",
+    "jsonwebtoken": "8.2.0",
+    "sequelize": "4.33.4",
+    "serverless-domain-manager": "^2.6.0",
+    "tedious": "2.3.1"
+  },
+  "devDependencies": {
+    "typescript": "2.8.1",
+    "@types/node": "9.6.0",
+    "@types/aws-sdk": "2.7.0",
+    "@types/aws-lambda": "0.0.34",
+    "@types/sequelize": "4.27.7",
+    "@types/tedious": "1.8.32",
+    "@types/jsonwebtoken": "7.2.6",
+    "serverless-offline": "3.18.0",
+    "serverless-plugin-typescript": "1.1.5"
+  }
+}

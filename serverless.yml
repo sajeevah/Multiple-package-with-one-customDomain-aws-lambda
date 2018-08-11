@@ -1,0 +1,56 @@
+service:
+  name: partner-portal-rest-api
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
+  - serverless-domain-manager
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: ${opt:stage, 'dev'}
+  memorySize: 3008
+  timeout: 300
+  profile: sajeeva
+  environment: ${file(./.config/env.${self:provider.stage}.json)}
+  iamRoleStatements:
+    - Effect: 'Allow'
+      Action:
+        - 'ses:SendEmail'
+      Resource:
+        ${self:provider.environment.sesArn}
+    - Effect: 'Allow'
+      Action:
+        - 'cognito-identity:*'
+        - 'cognito-idp:*'
+      Resource:
+        ${self:provider.environment.userPool}
+
+package:
+  include:
+    - templates/**
+  # exclude:
+  #   - node_modules/**/*
+
+functions: 
+  helloUser:
+    handler: users-service/handler.helloUser
+    events:
+      - http:
+          method: get
+          path: users/helloUser
+          cors: true
+
+  helloLeads:
+    handler: leads-service/handler.helloLeads
+    events:
+      - http:
+          method: get
+          path: leads/helloLeads
+          cors: true
+  
+
+
+
+
