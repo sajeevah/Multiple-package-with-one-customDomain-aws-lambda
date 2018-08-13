@@ -44,7 +44,7 @@ functions:
 
 custom:
   customDomain:
-    domainName: 'alpha-portal-api.moneyworkz.com' 
+    domainName: ${self:provider.environment.customDomainName} 
     basePath: 'leads' 
     stage: ${self:provider.stage}
     createRoute53Record: true
