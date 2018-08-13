@@ -1,5 +1,5 @@
 service:
-  name: partner-portal-rest-api
+  name: portal-rest-api
 
 plugins:
   - serverless-plugin-typescript
